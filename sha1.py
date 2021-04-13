@@ -85,6 +85,7 @@ class Sha1Hash(object):
     # lengthProcess needs to be set to set to 0 (for standard SHA1-computation) or to
     # n = len(original plaintext) + len(original padding)
     def __init__(self, initialState, lengthProcessed):
+        #Set the initial state according to the parameters
         initState = bytes.fromhex(initialState)
         h2 = []
         for i in range(5):

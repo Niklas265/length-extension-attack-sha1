@@ -22,7 +22,7 @@ def sha1padding(length):
 
 if __name__ == '__main__':
     if len(sys.argv) != 4:
-        print("Usage: python " + str(sys.argv[0]) + " <SHA-1 hash> <length of original message> <message to append>")
+        print("Usage: python3 " + str(sys.argv[0]) + " <SHA-1 hash> <length of original message> <message to append>")
         exit(-1)
     
     initialState = sys.argv[1]
@@ -31,6 +31,6 @@ if __name__ == '__main__':
     append = sys.argv[3]
     hasher = Sha1Hash(initialState, originalLength + len(padding))
     hasher.update(bytes(append, 'utf-8'))
-    print("Appended message: " + str(binascii.hexlify(padding)) + str(append))
+    print("Appended message: " + str(padding) + str(append))
     print("Hash:")
     print(binascii.hexlify(hasher.digest()))
