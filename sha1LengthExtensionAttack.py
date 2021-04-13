@@ -7,15 +7,18 @@ import sys
 def sha1padding(length):
     padding = b""
     blocksize = 64
-    r = 64 - (length % blocksize)
+    r = (length % blocksize)
     padding = padding + b'\x80'
-    zeroBytesToPad = r - 5
-    for i in range(zeroBytesToPad):
+    if(r >= 56 and r <=59):
+        padding = padding + (64*b'\x00')
+    while r != 59:
         padding = padding + b'\x00'
+        r = (r + 1) % 64 
 
     bitlength = length*8
     padding = padding + struct.pack(">i",bitlength)
     return padding
+
 
 if __name__ == '__main__':
     if len(sys.argv) != 4:
